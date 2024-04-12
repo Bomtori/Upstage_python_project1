@@ -1,3 +1,5 @@
+//  일단 백그라운드는 필요 없는 상태임
+
 // With background scripts you can communicate with popup
 // and contentScript files.
 // For more information on background script,
