@@ -26,3 +26,4 @@ df = pd.DataFrame(class_elements)
 # CSV 파일로 저장
 df.to_csv('class_elements.csv', index=False, encoding='utf-8-sig')
 print("CSV 파일이 성공적으로 생성되었습니다.")
+
