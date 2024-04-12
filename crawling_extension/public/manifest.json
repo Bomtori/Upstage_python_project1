@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Crawling Extension.4",
-  "version": "1.0",
+  "version": "0.2",
   "description": "Grabs the title of the website and makes it a clickable link.",
   "permissions": ["activeTab", "storage"],
   "action": {
