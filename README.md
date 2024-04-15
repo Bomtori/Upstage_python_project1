@@ -15,7 +15,6 @@
 ### 사용예제
 
 ### 개발환경
-![그림1](https://github.com/Bomtori/Upstage_python_project1/assets/117797850/a86447ac-661f-472c-b3eb-0a3c2e648f7f)
 
 <div style="text-align:center;">
 
@@ -29,7 +28,7 @@
 
 </div>
 
-
+![그림1](https://github.com/Bomtori/Upstage_python_project1/assets/117797850/a86447ac-661f-472c-b3eb-0a3c2e648f7f)
 
 ### 업데이트 내역
 2024.04.15 (월) v0.1 배포
