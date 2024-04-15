@@ -130,7 +130,7 @@
 // });
 // content.js
 const createDownloadModal = (blobUrl) => {
-  // Create the modal container
+  // Create the modal container // 컨테이너 만들기
   const modal = document.createElement('div');
   modal.style.cssText = `
       position: fixed;
@@ -145,7 +145,7 @@ const createDownloadModal = (blobUrl) => {
       z-index: 1000;
   `;
 
-  // Create the modal content box
+  // Create the modal content box // 박스 모달 내용 만들기
   const modalContent = document.createElement('div');
   modalContent.style.cssText = `
       background: white;
@@ -154,12 +154,12 @@ const createDownloadModal = (blobUrl) => {
       text-align: center;
   `;
 
-  // Add text to the modal
+  // Add text to the modal content // 모달 내용에 텍스트 추가
   const modalText = document.createElement('p');
   modalText.textContent = 'Do you want to download the CSV file?';
   modalContent.appendChild(modalText);
 
-  // Create the download button
+  // Create the download button // 다운로드 버튼 만들기
   const downloadButton = document.createElement('button');
   downloadButton.textContent = 'Download';
   downloadButton.style.cssText = `
@@ -168,11 +168,11 @@ const createDownloadModal = (blobUrl) => {
       cursor: pointer;
   `;
   downloadButton.onclick = () => {
-    document.body.removeChild(modal); // Remove modal before downloading
-    downloadFile(blobUrl); // Proceed with download
+    document.body.removeChild(modal); // Remove modal before downloading // 다운로드 전에 모달 제거
+    downloadFile(blobUrl); // Proceed with download // 다운로드 진행
   };
 
-  // Create the cancel button
+  // Create the cancel button // 취소 버튼 만들기
   const cancelButton = document.createElement('button');
   cancelButton.textContent = 'Cancel';
   cancelButton.style.cssText = `
@@ -182,20 +182,20 @@ const createDownloadModal = (blobUrl) => {
   `;
   cancelButton.onclick = () => {
     document.body.removeChild(modal);
-    URL.revokeObjectURL(blobUrl); // Clean up if canceled
+    URL.revokeObjectURL(blobUrl); // Clean up if canceled // 취소시 정리
   };
 
-  // Append buttons to modal content
+  // Append buttons to modal content // 모달 내용에 버튼 추가
   modalContent.appendChild(downloadButton);
   modalContent.appendChild(cancelButton);
 
-  // Append modal content to modal container
+  // Append modal content to modal container // 모달 내용을 모달 컨테이너에 추가
   modal.appendChild(modalContent);
 
-  // Append modal to body
+  // Append modal to body // 모달을 본문에 추가
   document.body.appendChild(modal);
 };
-
+// 다운로드 파일
 const downloadFile = (blobUrl) => {
   const link = document.createElement('a');
   link.href = blobUrl;
@@ -205,7 +205,7 @@ const downloadFile = (blobUrl) => {
   document.body.removeChild(link);
   URL.revokeObjectURL(blobUrl);
 };
-
+// 데이터 보내고 응답 출력
 const postDataAndPrintResponse = async (url, htmlData) => {
   try {
     const response = await fetch(url, {
@@ -243,7 +243,7 @@ const postDataAndPrintResponse = async (url, htmlData) => {
     return null;
   }
 };
-
+// 마우스 올라갔을 때 이벤트
 const handleMouseOver = (event) => {
   const originalBackgroundColor = event.target.style.backgroundColor;
   event.target.style.backgroundColor = 'lightblue';
@@ -256,7 +256,7 @@ const handleMouseOver = (event) => {
     { once: true }
   );
 };
-
+// 클릭 이벤트
 const handleClick = (event) => {
   event.preventDefault();
   event.stopPropagation();
@@ -276,7 +276,7 @@ const handleClick = (event) => {
     }
   });
 };
-
+// 이벤트 리스너 설정
 const setupEventListeners = () => {
   chrome.storage.local.get(['active'], (result) => {
     if (result.active === 'active') {
@@ -289,12 +289,12 @@ const setupEventListeners = () => {
   });
 };
 
-// Initialize listeners setup on script load
+// Initialize listeners setup on script load // 이벤트 리스너 설정
 setupEventListeners();
 
-// React to changes in activation state
+// React to changes in activation state // 활성화 상태 변경에 반응
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if ('active' in changes) {
-    setupEventListeners(); // Re-setup event listeners based on the new active state
+    setupEventListeners(); // Re-setup event listeners based on the new active state // 새로운 활성 상태에 따라 이벤트 리스너 다시 설정
   }
 });
