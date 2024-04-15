@@ -17,19 +17,17 @@
 ### 개발환경
 ![그림1](https://github.com/Bomtori/Upstage_python_project1/assets/117797850/a86447ac-661f-472c-b3eb-0a3c2e648f7f)
 
-[![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E?style=for-the-badge&logo=javascript&logoColor=white)](https://www.javascript.com/)
+<div style="text-align:center;">
 
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+  [![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E?style=for-the-badge&logo=javascript&logoColor=white)](https://www.javascript.com/)
+  [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+  [![Flask](https://img.shields.io/badge/Flask-%23000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+  [![Beautiful Soup](https://img.shields.io/badge/Beautiful_Soup-4CA2E5?style=for-the-badge&logo=beautifulsoup&logoColor=white)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+  [![Selenium](https://img.shields.io/badge/Selenium-%2343B02A?style=for-the-badge&logo=Selenium&logoColor=white)](https://www.selenium.dev/)
+  [![Renderer](https://img.shields.io/badge/Renderer-%23323330?style=for-the-badge)](https://example.com/)
+  [![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://developer.chrome.com/docs/extensions/)
 
-[![Flask](https://img.shields.io/badge/Flask-%23000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-
-[![Beautiful Soup](https://img.shields.io/badge/Beautiful_Soup-4CA2E5?style=for-the-badge&logo=beautifulsoup&logoColor=white)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-
-[![Selenium](https://img.shields.io/badge/Selenium-%2343B02A?style=for-the-badge&logo=Selenium&logoColor=white)](https://www.selenium.dev/)
-
-[![Renderer](https://img.shields.io/badge/Renderer-%23323330?style=for-the-badge)](https://example.com/)
-
-[![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://developer.chrome.com/docs/extensions/)
+</div>
 
 
 
