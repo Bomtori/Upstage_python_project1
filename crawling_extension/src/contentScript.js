@@ -267,7 +267,7 @@ const handleClick = (event) => {
 
       // Assuming postDataAndPrintResponse function is defined elsewhere
       const response = await postDataAndPrintResponse(
-        'http://127.0.0.1:8090/post',
+        'https://crawling-extension-flask.onrender.com/post',
         elementHtml
       );
       console.log(response);
