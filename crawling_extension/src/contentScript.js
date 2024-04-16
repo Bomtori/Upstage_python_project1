@@ -1,134 +1,3 @@
-// const logElementXPath = () => {
-//   document.addEventListener(
-//     'click',
-//     (event) => {
-//       const xpath = calculateXPath(event.target);
-//       console.log(xpath); // xpath 프린트
-//       console.log(window.location.href);
-//       event.preventDefault(); // Prevent the default action for demonstration purposes
-//     },
-//     true
-//   );
-// };
-
-// const calculateXPath = (element) => {
-//   let path = '';
-//   while (element.nodeType === Node.ELEMENT_NODE) {
-//     const siblingIndex = getSiblingsIndex(element);
-//     const nodeName = element.nodeName.toLowerCase();
-//     path = `/${nodeName}[${siblingIndex}]` + path;
-//     element = element.parentNode;
-//   }
-//   return path;
-// };
-
-// const getSiblingsIndex = (element) => {
-//   let index = 1; // XPath indexing starts at 1/ 인덱스 1에서부터 시작
-//   for (
-//     let sibling = element.previousSibling;
-//     sibling;
-//     sibling = sibling.previousSibling
-//   ) {
-//     if (
-//       sibling.nodeType === Node.ELEMENT_NODE &&
-//       sibling.nodeName === element.nodeName
-//     ) {
-//       index++;
-//     }
-//   }
-//   return index;
-// };
-
-// logElementXPath();
-
-// document.addEventListener('mouseover', (event) => {
-//   // Get the original background color of the element under the mouse pointer // 마우스 포인터 아래의 원래 배경색을 가져옴
-//   const originalBackgroundColor = event.target.style.backgroundColor;
-//   chrome.storage.local.get(['active'], (result) => {
-//     const active = result.active;
-//     // console.log(active);
-
-//     if (active === 'active') {
-//       // act to none
-//       event.target.style.backgroundColor = 'lightblue';
-//       document.addEventListener('click', (event) => {
-//         // Prevent the default click action // 기본 클릭 액션 방지
-//         event.preventDefault();
-//         const act = 'none'; // 활성화 상태를 비활성화 상태로 변경
-
-//         chrome.storage.local.set({ active: act });
-
-//         // Get the entire HTML content of the clicked element
-//         const elementHtml = event.target.outerHTML;
-
-//         // Copy the HTML to the clipboard // 클립보드에 HTML 복사
-//         navigator.clipboard
-//           .writeText(elementHtml)
-//           .then(() => {
-//             console.log('Element HTML copied to clipboard');
-//           })
-//           .catch((err) => {
-//             console.error('Failed to copy element HTML to clipboard', err);
-//           });
-//         // send the html to the server // 서버에 html 보내기
-//         const postDataAndPrintResponse = async (url) => {
-//           try {
-//             // Make the POST request // POST 요청
-//             const data = { html: elementHtml };
-//             const response = await fetch(url, {
-//               method: 'POST',
-//               headers: { 'Content-Type': 'application/json' },
-//               body: JSON.stringify(data),
-//             });
-//             const blob = await response.blob(); // Convert the response to a blob
-//             console.log(blob);
-//             const blobUrl = URL.createObjectURL(blob); // Create a URL for the blob
-//             const link = document.createElement('a');
-//             link.href = blobUrl;
-//             link.download = 'downloaded_data.csv'; // Set the filename for the download
-//             document.body.appendChild(link);
-//             link.click(); // Trigger the download
-//             document.body.removeChild(link); // Clean up the link
-//             URL.revokeObjectURL(blobUrl); // Free up the blob URL
-//             if (!response.ok)
-//               throw new Error(`HTTP error! status: ${response.status}`);
-
-//             // Get the response data as text // 텍스트로 응답 데이터 가져오기
-//             // const responseText = await response.json();
-//             // console.log(333);
-//             // console.log(responseText);
-//             // Print the response text (CSV content) // 응답 텍스트 (CSV 내용) 출력
-//             // console.log(responseText); // 응답 텍스트 출력
-//           } catch (error) {
-//             console.error('Request failed:', error);
-//           }
-//         };
-
-//         // Usage
-//         postDataAndPrintResponse(
-//           'https://crawling-extension-flask.onrender.com/post'
-//         );
-
-//         // act to none
-//         const acts = 'none'; // 활성화 상태를 비활성화 상태로 변경
-
-//         chrome.storage.local.set({ active: acts });
-//       });
-//       // Restore the original background color when the mouse leaves the element // 마우스가 요소를 떠나면 원래 배경색 복원
-//       event.target.addEventListener(
-//         'mouseout',
-//         () => {
-//           event.target.style.backgroundColor = originalBackgroundColor;
-//         },
-//         { once: true }
-//       );
-//     }
-//   });
-
-//   // Change the background color of the element under the mouse pointer
-//   // Restore the original background color when the mouse leaves the element
-// });
-// content.js
 const createDownloadModal = (blobUrl) => {
   // Create the modal container // 컨테이너 만들기
   const modal = document.createElement('div');
@@ -207,10 +76,12 @@ const downloadFile = (blobUrl) => {
 };
 // 데이터 보내고 응답 출력
 const postDataAndPrintResponse = async (url, htmlData) => {
+  const authToken =
+    'slknflaksdnflnadlfasklmnlkgaslkmelopwjepgjkamdop!@332&56kfmafasg';
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: authToken },
       body: JSON.stringify({ html: htmlData }),
     });
 
@@ -218,24 +89,13 @@ const postDataAndPrintResponse = async (url, htmlData) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     // outer html 을 보내고 받음 확인 완료
-    // Assuming this is inside an async function after fetching a response
+    // Assuming this is inside an async function after fetching a response // 응답을 가져온 후 async 함수 내부에 있다고 가정
     const blob = await response.blob();
     console.log(blob);
     const blobUrl = URL.createObjectURL(blob);
 
-    // Call the modal function instead of direct download
+    // Call the modal function instead of direct download // 직접 다운로드 대신 모달 함수 호출
     createDownloadModal(blobUrl);
-
-    // const blob = await response.blob();
-    // console.log(blob);
-    // const blobUrl = URL.createObjectURL(blob);
-    // const link = document.createElement('a');
-    // link.href = blobUrl;
-    // link.download = 'downloaded_data.csv';
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
-    // URL.revokeObjectURL(blobUrl);
 
     return 'File downloaded';
   } catch (error) {
@@ -265,14 +125,13 @@ const handleClick = (event) => {
     if (result.active === 'active') {
       const elementHtml = event.target.outerHTML;
 
-      // Assuming postDataAndPrintResponse function is defined elsewhere
       const response = await postDataAndPrintResponse(
         'https://crawling-extension-flask.onrender.com/post',
         elementHtml
       );
       console.log(response);
 
-      chrome.storage.local.set({ active: 'none' }); // Deactivate after handling
+      chrome.storage.local.set({ active: 'none' }); // Deactivate after handling // 처리 후 비활성화
     }
   });
 };
@@ -291,10 +150,50 @@ const setupEventListeners = () => {
 
 // Initialize listeners setup on script load // 이벤트 리스너 설정
 setupEventListeners();
-
+const getRandomScrollDistance = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 // React to changes in activation state // 활성화 상태 변경에 반응
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if ('active' in changes) {
     setupEventListeners(); // Re-setup event listeners based on the new active state // 새로운 활성 상태에 따라 이벤트 리스너 다시 설정
+  }
+  if ('isInitialized' in changes) {
+    console.log('isInitialized changed');
+    chrome.storage.local.get(
+      ['scrollCount', 'isInitialized', 'waitTime'],
+      (result) => {
+        if (result.isInitialized === 'active') {
+          // Retrieve the number of times to scroll down // 아래로 스크롤할 횟수를 가져옴
+          const totalScrolls = parseInt(result.scrollCount, 10) || 10; // Default to 10 scrolls if undefined // 정의되지 않은 경우 10 스크롤로 기본 설정
+          const delayBetweenScrolls =
+            parseInt(result.waitTime, 10) * 1000 || 1000; // Default to 1 second if undefined // 정의되지 않은 경우 1초로 기본 설정
+          console.log(parseInt(result.waitTime) * 1000);
+          console.log('Total scrolls:', totalScrolls);
+
+          const scrollPage = (currentCount = 0) => {
+            const scrollDistance = getRandomScrollDistance(9555, 10555);
+            console.log(
+              `Scrolling ${currentCount + 1}: ${scrollDistance} pixels`
+            );
+            window.scrollBy(0, scrollDistance);
+
+            // Increment the scroll count and continue if we haven't reached the total // 스크롤 횟수를 증가시키고 총 횟수에 도달하지 않은 경우 계속 진행
+            if (currentCount + 1 < totalScrolls) {
+              setTimeout(
+                () => scrollPage(currentCount + 1),
+                delayBetweenScrolls
+              );
+            }
+          };
+
+          // Start the scrolling process // 스크롤링 프로세스 시작
+          scrollPage();
+
+          // Optionally reset the initialization flag to 'none' // 선택적으로 초기화 플래그를 'none'으로 재설정
+          chrome.storage.local.set({ isInitialized: 'none' });
+        }
+      }
+    );
   }
 });
