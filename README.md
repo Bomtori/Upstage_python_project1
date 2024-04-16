@@ -11,6 +11,10 @@
 - flask서버를 활용하여 모델 돌리기
 
 ### 사용방법
+- 크롬익스텐션 다운로드
+- 익스텐션 아이콘 클릭
+- 크롤링: Activate Crawling 클릭후 원하는 태그 클릭(서버가 다운되어있으면 재시작하느라 시간이 걸림)
+- 스크롤링: Scroll Wait, Time Scroll Count을 원하는 값으로 설정한뒤 initialize 버튼 클릭
 
 
 ### 개발환경
