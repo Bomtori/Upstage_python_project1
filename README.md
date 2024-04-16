@@ -11,11 +11,11 @@
 - flask서버를 활용하여 모델 돌리기
 
 ### 사용방법
-- 크롬익스텐션 다운로드
-- 익스텐션 아이콘 클릭
+- 크롬 오른쪽 위 3점 클릭 > 확장프로그램 > 확장프로그램 관리 > 오른쪽 상단 개발자 모드 실행
+- powershell에서 crawling_extension폴더로 들어간 후, npm run watch 실행> 폴더에 build 만들어진 것을 확인
+- 확장 프로그램 > 압축해제된 확장 프로그램을 로드합니다. 클릭 > build 업로드 후 사용
 - 크롤링: Activate Crawling 클릭후 원하는 태그 클릭(서버가 다운되어있으면 재시작하느라 시간이 걸림)
 - 스크롤링: Scroll Wait, Time Scroll Count을 원하는 값으로 설정한뒤 initialize 버튼 클릭
-
 
 ### 개발환경
 
